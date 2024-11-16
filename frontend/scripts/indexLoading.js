@@ -22,18 +22,16 @@ function loadName()
 
     if (!token)
     {
+        console.error('No token found in session storage');
         return;
     }
-
-        let currentURL = 'http://127.0.0.1'
-    
-        fetch(`${currentURL}/getUserName`, {
+        fetch(`${appURL}/getUserName`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': token,
         },
-    }).then(response => {
+        }).then(response => {
             if (!response.ok) {
                 throw new Error('Error al obtener el nombre desde el servidor');
             }
@@ -98,7 +96,7 @@ function goToExit()
 {
     sessionStorage.removeItem('token')
     document.cookie = 'token=; Expires=0;';
-    navigateToPath('/');
+    navigateToPath('index_logInPending');
 }
 
 function goToBalance()

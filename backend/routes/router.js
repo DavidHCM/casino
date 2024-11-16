@@ -16,12 +16,12 @@ const User = require("../src/controllers/login_connect");
 
 const verifyToken = (req, res, next) => {
     const token = req.cookies.token;
-
-    console.log(next);
+    console.log("     \nHOLA " + token);
 
     if (!token)
     {
-        res.sendFile(path.resolve(__dirname + "/../src/views/logIn.html"));
+        console.log("      ADIOS          " + token);
+        return res.status(401).json({ message: 'No token provided' });
     }
 
     try
@@ -33,13 +33,18 @@ const verifyToken = (req, res, next) => {
     }
     catch (error)
     {
-        res.status(401).json({ message: 'Acceso no autorizado. Token inválido.' });
+        return res.status(401).json({ message: 'Acceso no autorizado. Token inválido.' });
     }
 };
 
 
 router.get('/getUserName', verifyToken, async (req, res) => {
     try {
+
+        const token = req.cookies.token;
+        req.userId = token;
+        console.log("ASDF" + req.userId)
+
         const user = await User.findById(req.userId);
 
 
