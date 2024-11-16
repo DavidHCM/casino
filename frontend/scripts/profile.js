@@ -6,10 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function loadProfile() {
     var id = sessionStorage.getItem('token');
-    var url = `/profile?id=${id}`;
+    var url = `${appURL}/profile?id=${id}`;
+    var token = sessionStorage.getItem('token');
 
     xhr.open('GET', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
     xhr.onload = function() {
         if (xhr.status != 200) {
             alert(xhr.status + ': ' + xhr.statusText); 

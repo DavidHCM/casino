@@ -44,7 +44,6 @@ router.get('/getUserName', verifyToken, async (req, res) => {
         const token = authHeader;
 
         req.userId = token;
-        console.log("ASDF" + req.userId)
 
         const user = await User.findById(req.userId);
 

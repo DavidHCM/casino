@@ -9,8 +9,8 @@ const Activity = require("../src/controllers/activity");
 // ----------------- PROFILE ---------
 
 
-// /profile/ => load HTML
 router.get("/", (req, res) => {
+    console.log("AUQI:w");
     let id = req.query.id;
 
     if(id) {
