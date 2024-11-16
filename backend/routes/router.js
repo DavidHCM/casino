@@ -15,12 +15,12 @@ const User = require("../src/controllers/login_connect");
 // --------------- TOKEN -------------------------
 
 const verifyToken = (req, res, next) => {
-    const token = req.cookies.token;
-    console.log("     \nHOLA " + token);
+
+    const authHeader = req.headers['authorization'];
+    const token = authHeader;
 
     if (!token)
     {
-        console.log("      ADIOS          " + token);
         return res.status(401).json({ message: 'No token provided' });
     }
 
@@ -40,13 +40,13 @@ const verifyToken = (req, res, next) => {
 
 router.get('/getUserName', verifyToken, async (req, res) => {
     try {
+        const authHeader = req.headers['authorization'];
+        const token = authHeader;
 
-        const token = req.cookies.token;
         req.userId = token;
         console.log("ASDF" + req.userId)
 
         const user = await User.findById(req.userId);
-
 
         if (!user)
         {
