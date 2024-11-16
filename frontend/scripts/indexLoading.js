@@ -1,4 +1,4 @@
-
+const appURL = 'http://127.0.0.1:3000'; // Had to include https string to not be treated as  relative path
 const text = document.getElementById('textProf')
 const loader = document.getElementById('preloader')
 window.addEventListener('load', () =>{
@@ -13,7 +13,7 @@ window.addEventListener('load', () =>{
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadName()
+    loadName();
 });
 
 function loadName()
@@ -26,6 +26,9 @@ function loadName()
     }
 
     let currentURL = getBaseURL();
+    
+    console.log("here");
+    console.log(currentURL);
 
         fetch(`${currentURL}/getUserName`, {
         method: 'GET',
@@ -52,7 +55,8 @@ function getBaseURL() {
 
 function navigateToPath(path) {
     const baseURL = getBaseURL();
-    window.location.href = `${baseURL}/${path}`;
+    const html = '.html';
+    window.location.href = `${baseURL}/views/${path}` + html; // Added views
 }
 
 function goToIndex()
@@ -121,7 +125,7 @@ function goToReg()
 }
 
 function redirectToGame(gamePath) {
-    const baseURL = getBaseURL();
+    const baseURL = `localhost:3000`;
     const fullURL = `${baseURL}/games/${gamePath}`;
     window.location.href = fullURL;
     console.log(fullURL);

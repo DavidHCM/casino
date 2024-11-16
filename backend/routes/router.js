@@ -141,18 +141,15 @@ router.get("/rules", (req, res) => {
 });
 
 // Index
-router.get("/index", (req, res) => {
-    res.sendFile(path.resolve(__dirname + "/../src/views/index_logIn.html"));
-});
+// router.get("/index", (req, res) => {
+//     res.sendFile(path.resolve(__dirname + "/../src/views/index_logIn.html"));
+// });
 
 // Login
-router.get("/login", (req, res) => {
-    res.sendFile(path.resolve(__dirname + "/../src/views/logIn.html"));
-});
+// router.get("/login", (req, res) => {
+//     res.sendFile(path.resolve(__dirname + "/../src/views/logIn.html"));
+// });
 
-router.get("/register", (req, res) => {
-    res.sendFile(path.resolve(__dirname + "/../src/views/register.html"));
-});
 
 
 
