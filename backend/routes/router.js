@@ -17,6 +17,7 @@ const User = require("../src/controllers/login_connect");
 const verifyToken = (req, res, next) => {
     const token = req.cookies.token;
 
+    console.log(next);
 
     if (!token)
     {
@@ -119,7 +120,7 @@ router.post('/login', async (req,res) =>{
 router.use('/information', verifyToken);
 router.use('/rules', verifyToken);
 router.use('/index', verifyToken);
-//router.use('/profile', verifyToken);
+router.use('/profile', verifyToken);
 router.use('/add', verifyToken);
 
 

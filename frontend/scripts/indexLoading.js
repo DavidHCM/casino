@@ -25,11 +25,8 @@ function loadName()
         return;
     }
 
-    let currentURL = getBaseURL();
+        let currentURL = 'http://127.0.0.1'
     
-    console.log("here");
-    console.log(currentURL);
-
         fetch(`${currentURL}/getUserName`, {
         method: 'GET',
         headers: {
@@ -61,7 +58,7 @@ function navigateToPath(path) {
 
 function goToIndex()
 {
-    navigateToPath('index');
+    navigateToPath('index_logIn');
 }
 
 function goToIndexPending()

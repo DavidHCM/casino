@@ -18,7 +18,7 @@ actionLogin.addEventListener('click', async () =>
             let requestBody = JSON.stringify(credentials);
 
 
-            const response = await fetch('/login', {
+            const response = await fetch(`${appURL}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ actionLogin.addEventListener('click', async () =>
                 const  token  = await response.json();
                 document.cookie = `token=${token};`;
                 sessionStorage.setItem('token',token)
-                goToIndex()
+                goToIndex();
             }
             else
             {
