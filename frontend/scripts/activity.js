@@ -17,9 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function loadActivity() {
     var id = sessionStorage.getItem('token');
-    var url = `/profile/activity?id=${id}`;
+    var url = `${appURL}/profile/activity?id=${id}`;
 
     xhr.open('GET', url, true);
+    var token = sessionStorage.getItem('token');
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`)
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
         if (xhr.status != 200) {

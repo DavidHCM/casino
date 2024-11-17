@@ -66,7 +66,7 @@ function goToIndexPending()
 
 function goToInfo()
 {
-    navigateToPath('information');
+    navigateToPath('info');
 }
 
 function goToRules()
@@ -101,12 +101,12 @@ function goToExit()
 
 function goToBalance()
 {
-    navigateToPath('profile/balance');
+    navigateToPath('balance');
 }
 
 function goToActivity()
 {
-    navigateToPath('profile/activity');
+    navigateToPath('activity');
 }
 
 function goToInit()
@@ -120,8 +120,7 @@ function goToReg()
 }
 
 function redirectToGame(gamePath) {
-    const baseURL = `localhost:3000`;
-    const fullURL = `${baseURL}/games/${gamePath}`;
+    const fullURL = `/views/${gamePath}.html`;
     window.location.href = fullURL;
     console.log(fullURL);
 }

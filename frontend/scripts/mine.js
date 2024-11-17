@@ -42,10 +42,12 @@ let minesLCount = document.querySelector('[data-mine-count]');
 function loadBalance() {
 
     var id = sessionStorage.getItem('token');
-    var url = `/profile/balance?id=${id}`;
+    var url = `${appURL}/profile/balance?id=${id}`;
 
     xhr.open('GET', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
+    var token = sessionStorage.getItem('token');
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`)
     xhr.onload = function() {
         if (xhr.status !== 200) {
             alert(xhr.status + ': ' + xhr.statusText);
@@ -291,7 +293,7 @@ function nearbyTiles(board, { x, y }) {
 
 function updateBalance(amount) {
     const id = sessionStorage.getItem('token');
-    const url = '/profile/balance';
+    const url = `${appURL}/profile/balance`;
 
     let data = {
         id: id,
@@ -299,6 +301,8 @@ function updateBalance(amount) {
     };
 
     xhr.open('PUT', url, true);
+    var token = sessionStorage.getItem('token');
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`)
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
         if (xhr.status !== 200)
@@ -320,7 +324,7 @@ function updateBalance(amount) {
 
 function storeActivity(balance, nameGame) {
     const id = sessionStorage.getItem('token');
-    const url = '/profile/activity';
+    const url = `${appURL}/profile/activity`;
 
     var BetStatus = false;
     if (nameGame > 0) {
@@ -335,6 +339,9 @@ function storeActivity(balance, nameGame) {
         BetStatus: BetStatus
     };
 
+    const xhr = new XMLHttpRequest();
+    var token = sessionStorage.getItem('token');
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`)
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {

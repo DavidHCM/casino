@@ -95,9 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function loadBalanceRoulette()
 {
     var id = sessionStorage.getItem('token');
-    var url = `/profile/balance?id=${id}`;
+    var url = `${appURL}/profile/balance?id=${id}`;
 
     xhr.open('GET', url, true);
+    var token = sessionStorage.getItem('token');
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`)
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
       if (xhr.status !== 200) {
@@ -117,7 +119,7 @@ function loadBalanceRoulette()
 
 function updateBalance(amount) {
     const id = sessionStorage.getItem('token');
-    const url = '/profile/balance';
+    const url = `${appURL}/profile/balance`;
 
 
     let data = {
@@ -126,6 +128,8 @@ function updateBalance(amount) {
     };
 
     xhr.open('PUT', url, true);
+    var token = sessionStorage.getItem('token');
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`)
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
       if (xhr.status !== 200)
@@ -302,41 +306,45 @@ checkboxTercera.addEventListener('click', () =>
 });
 
 
-function storeActivity(balance, nameGame) {
-  const id = sessionStorage.getItem('token');
-  const url = '/profile/activity';
+function storeActivity(amount, nameGame) {
+    const id = sessionStorage.getItem('token');
+    const url = `${appURL}/profile/activity`;
 
-  var BetStatus = false;
-  if (nameGame > 0) {
-    BetStatus = true;
-  }
+    // Determine BetStatus based on the amount
+    // Assuming positive amount means a win, negative means a loss
+    const BetStatus = amount > 0;
 
-  let data = {
-    userID: id,
-    balance: balance,
-    dateGame: new Date().toISOString(),
-    nameGame: nameGame,
-    BetStatus: BetStatus
-  };
+    let data = {
+        userID: id, // Ensure this matches your backend's expected field
+        balance: amount,
+        dateGame: new Date().toISOString(),
+        nameGame: nameGame,
+        BetStatus: BetStatus
+    };
 
-  xhr.open('POST', url, true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.onload = function () {
-    if (xhr.status !== 200)
-    {
-      alert(xhr.status + ': ' + xhr.statusText);
-    }
-    else
-    {
-      if (xhr.status === 200)
-      {
-        console.log(xhr.responseText);
-      }
-    }
-  };
-  xhr.send(JSON.stringify(data));
+    const xhr = new XMLHttpRequest(); // Create a new XHR instance
+
+    xhr.open('POST', url, true);
+    const token = sessionStorage.getItem('token');
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function () {
+        if (xhr.status !== 200) {
+            alert(xhr.status + ': ' + xhr.statusText);
+        } else {
+            if (xhr.status === 200) {
+                console.log('Activity stored successfully:', xhr.responseText);
+            }
+        }
+    };
+
+    xhr.onerror = function () {
+        console.error('Request failed');
+    };
+
+    xhr.send(JSON.stringify(data));
 }
-
 
 
 btnSpin.addEventListener('click', function () {

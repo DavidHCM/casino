@@ -10,7 +10,6 @@ const Activity = require("../src/controllers/activity");
 
 
 router.get("/", (req, res) => {
-    console.log("AUQI:w");
     let id = req.query.id;
 
     if(id) {
@@ -84,8 +83,8 @@ router.get("/balance", (req, res) => {
             res.send(docs[0]);
         }).catch((err) => res.send("Error"));
     } else {
-        // Send HTML File
-        res.sendFile(path.resolve(__dirname + "/../src/views/balance.html"));
+        // Send HTML File - Deprecated
+        // res.sendFile(path.resolve(__dirname + "/../src/views/balance.html"));
     }
 
 });
@@ -122,6 +121,7 @@ router.put("/balance", (req, res) => {
 // ----------------- ACTIVITY -------------------
 // /profile/activity
 router.get("/activity", (req, res) => {
+
     let id = req.query.id;
 
     if (id) {
@@ -134,7 +134,7 @@ router.get("/activity", (req, res) => {
 
 
     } else {
-        res.sendFile(path.resolve(__dirname + "/../src/views/activity.html"));
+        // res.sendFile(path.resolve(__dirname + "/../src/views/activity.html"));
     }
 });
 

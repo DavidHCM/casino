@@ -19,9 +19,11 @@ function showWithdrawForm() {
 
 function loadBalance() {
     var id = sessionStorage.getItem('token');
-    var url = `/profile/balance?id=${id}`;
+    var url = `${appURL}/profile/balance?id=${id}`;
 
     xhr.open('GET', url, true);
+    var token = sessionStorage.getItem('token');
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
         if (xhr.status != 200) {
@@ -63,7 +65,9 @@ function addBalance() {
     }
     data = JSON.stringify(data);
 
-    xhr.open('PUT', `/profile/balance`, false);
+    xhr.open('PUT', `${appURL}/profile/balance`, false);
+    var token = sessionStorage.getItem('token');
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
         if (xhr.status != 200) {
@@ -117,7 +121,9 @@ function withdrawBalance() {
 
         data = JSON.stringify(data);
 
-        xhr.open('PUT', `/profile/balance`, false);
+        xhr.open('PUT', `${appURL}/profile/balance`, false);
+        var token = sessionStorage.getItem('token');
+        xhr.setRequestHeader('Authorization', `Bearer ${token}`);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = function() {
             if (xhr.status != 200) {
