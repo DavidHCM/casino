@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const viewsPath = path.join(__dirname, 'public/views');
 
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Frontend is being served at http://localhost:${PORT}`);
 });
 
