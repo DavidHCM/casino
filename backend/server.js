@@ -22,6 +22,7 @@ app.use(cookieParser());
 
 // -------- ......CORS -----------------
 app.use(cors({
+    origin: 'http://10.0.7.118:5000', // Replace with frontend's URL
     methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']
 }));
 
