@@ -37,6 +37,6 @@ const router = require('./routes/router.js');
 app.use('/', router);
 
 // Después de encender el servidor
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Backend is being served at http://localhost:${PORT}`);
 });
