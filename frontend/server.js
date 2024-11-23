@@ -1,11 +1,26 @@
 const express = require('express');
 const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware'); 
 
 const app = express();
 const PORT = 5000;
 
+// BACKEND
+const BACKEND_URL = 'http://10.0.140.169:3000';
+app.use(express.json());
+
+// STATIC Files Frontend
 app.use(express.static(path.join(__dirname, 'public')));
 const viewsPath = path.join(__dirname, 'public/views');
+
+// Proxy configuration
+app.use('/api', createProxyMiddleware({
+    target: BACKEND_URL,
+    changeOrigin: true,
+    pathRewrite: {
+        '^/api': '', // Remove '/api' prefix
+    },
+}));
 
 
 app.listen(PORT, '0.0.0.0', () => {

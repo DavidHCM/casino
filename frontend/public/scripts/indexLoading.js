@@ -1,4 +1,4 @@
-const appURL = 'http://10.0.140.169:3000'; // Had to include https string to not be treated as  relative path
+const appURL = '/api'; // Had to include https string to not be treated as  relative path
 const text = document.getElementById('textProf')
 const loader = document.getElementById('preloader')
 window.addEventListener('load', () =>{
