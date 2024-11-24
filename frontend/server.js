@@ -246,7 +246,7 @@ app.post('/api/profile/activity', async (req, res) => {
     try {
         const authHeader = req.headers['authorization'];
         const token = authHeader;
-        const response = await axios.post(`${BACKEND_URL}/api/activity`, req.body, {
+        const response = await axios.post(`${BACKEND_URL}/profile/activity`, req.body, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token, // Assuming activity creation requires auth

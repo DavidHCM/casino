@@ -77,10 +77,10 @@ function updateField(field, newValue) {
     data = JSON.stringify(data);
 
     var token = sessionStorage.getItem('token');
+    xhr.setRequestHeader('Authorization', `${token}`);
 
     xhr.open('PUT', `/api/profile`, false);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader('Authorization', `${token}`);
     xhr.onload = function() {
         if (xhr.status != 200) {
             alert(xhr.status + ': ' + xhr.statusText); 
