@@ -134,7 +134,8 @@ app.get('/api/getUserName', async (req, res) => {
 // 4. Update Profile Route
 app.put('/api/profile/', async (req, res) => {
     try {
-        const token = getAuthHeader(req);
+        const authHeader = req.headers['authorization'];
+        const token = authHeader;
         const response = await axios.put(`${BACKEND_URL}/profile`, req.body, {
             headers: {
                 'Content-Type': 'application/json',
@@ -152,7 +153,8 @@ app.put('/api/profile/', async (req, res) => {
 // 5. Get Profile Balance Route
 app.get('/api/profile/balance', async (req, res) => {
     try {
-        const token = getAuthHeader(req);
+        const authHeader = req.headers['authorization'];
+        const token = authHeader;
         const response = await axios.get(`${BACKEND_URL}/profile/balance`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -171,7 +173,8 @@ app.get('/api/profile/balance', async (req, res) => {
 // 6. Update Profile Balance Route
 app.put('/api/profile/balance', async (req, res) => {
     try {
-        const token = getAuthHeader(req);
+        const authHeader = req.headers['authorization'];
+        const token = authHeader;
         const response = await axios.put(`${BACKEND_URL}/profile/balance`, req.body, {
             headers: {
                 'Content-Type': 'application/json',
@@ -189,7 +192,8 @@ app.put('/api/profile/balance', async (req, res) => {
 // 7. Get Activity Route
 app.get('/api/activity', async (req, res) => {
     try {
-        const token = getAuthHeader(req);
+        const authHeader = req.headers['authorization'];
+        const token = authHeader;
         const response = await axios.get(`${BACKEND_URL}/activity`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -208,7 +212,8 @@ app.get('/api/activity', async (req, res) => {
 // 8. Post Activity Route
 app.post('/api/activity', async (req, res) => {
     try {
-        const token = getAuthHeader(req);
+        const authHeader = req.headers['authorization'];
+        const token = authHeader;
         const response = await axios.post(`${BACKEND_URL}/activity`, req.body, {
             headers: {
                 'Content-Type': 'application/json',
