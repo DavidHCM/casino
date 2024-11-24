@@ -139,7 +139,7 @@ app.get('/api/getUserName', async (req, res) => {
 });
 
 // 4. Update Profile Route
-app.put('/api/profile/', async (req, res) => {
+app.put('/api/profile', async (req, res) => {
     try {
         const authHeader = req.headers['authorization'];
         const token = authHeader;
@@ -158,7 +158,7 @@ app.put('/api/profile/', async (req, res) => {
 });
 
 // 4.5 Profile api route 
-app.get('/api/profile/', async (req, res) => {
+app.get('/api/profile', async (req, res) => {
     try {
         const authHeader = req.headers['authorization'];
         if (!authHeader) {
