@@ -219,7 +219,7 @@ app.get('/api/profile/activity', async (req, res) => {
     try {
         const authHeader = req.headers['authorization'];
         const token = authHeader;
-        const response = await axios.get(`${BACKEND_URL}/activity`, {
+        const response = await axios.get(`${BACKEND_URL}/profile/activity`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token,
