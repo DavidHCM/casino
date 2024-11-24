@@ -79,6 +79,12 @@ app.get('/mines', (req, res) => {
     res.sendFile(path.join(viewsPath, 'mineBet.html'));
 });
 
+app.post('/api/register', (req, res) => {
+    console.log("HERE");
+    res.send('hello world');
+});
+
+
 // Catch-all route
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/views', 'index_logInPending.html'));
