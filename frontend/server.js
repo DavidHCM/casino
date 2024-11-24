@@ -20,8 +20,15 @@ app.use('/api', createProxyMiddleware({
     pathRewrite: {
         '^/api': '', // Remove '/api' prefix
     },
+    logLevel: 'debug', // Enable detailed logging
+    onProxyReq: (proxyReq, req, res) => {
+        console.log(`Proxying request to: ${BACKEND_URL}${req.url}`);
+    },
+    onError: (err, req, res) => {
+        console.error('Proxy error:', err);
+        res.status(500).send('Proxy encountered an error.');
+    },
 }));
-
 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Frontend is being served at http://localhost:${PORT}`);
