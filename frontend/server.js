@@ -153,24 +153,27 @@ app.put('/api/profile/', async (req, res) => {
 // 4.5 Profile api route 
 app.get('/api/profile/', async (req, res) => {
     try {
-        console.log("Profile");
         const authHeader = req.headers['authorization'];
+        if (!authHeader) {
+            return res.status(401).json({ error: 'Authorization header missing' });
+        }
+
         const token = authHeader;
-        const response = await axios.get(`${BACKEND_URL}/profile`, req.body, {
+        const response = await axios.get(`${BACKEND_URL}/profile`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token,
             },
             params: req.query, // Forward query parameters
-
         });
-        // Backend sends updated user object
+
         res.status(response.status).json(response.data);
     } catch (error) {
         console.error('Error in GET /api/profile/:', error.response ? error.response.data : error.message);
         res.status(500).json({ error: 'Manual Proxy encountered an error.' });
     }
 });
+
 
 // 5. Get Profile Balance Route
 app.get('/api/profile/balance', async (req, res) => {
