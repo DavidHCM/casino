@@ -150,6 +150,26 @@ app.put('/api/profile/', async (req, res) => {
     }
 });
 
+// 4.5 Profile api route 
+app.get('/api/profile/', async (req, res) => {
+    try {
+        console.log("Profile");
+        const authHeader = req.headers['authorization'];
+        const token = authHeader;
+        const response = await axios.get(`${BACKEND_URL}/profile`, req.body, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token,
+            },
+        });
+        // Backend sends updated user object
+        res.status(response.status).json(response.data);
+    } catch (error) {
+        console.error('Error in PUT /api/profile/:', error.response ? error.response.data : error.message);
+        res.status(500).json({ error: 'Manual Proxy encountered an error.' });
+    }
+});
+
 // 5. Get Profile Balance Route
 app.get('/api/profile/balance', async (req, res) => {
     try {
