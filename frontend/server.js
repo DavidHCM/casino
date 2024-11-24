@@ -165,7 +165,7 @@ app.get('/api/profile/', async (req, res) => {
         // Backend sends updated user object
         res.status(response.status).json(response.data);
     } catch (error) {
-        console.error('Error in PUT /api/profile/:', error.response ? error.response.data : error.message);
+        console.error('Error in GET /api/profile/:', error.response ? error.response.data : error.message);
         res.status(500).json({ error: 'Manual Proxy encountered an error.' });
     }
 });

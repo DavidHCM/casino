@@ -11,7 +11,7 @@ function loadProfile() {
     xhr.open('GET', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     var token = sessionStorage.getItem('token');
-    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+    xhr.setRequestHeader('Authorization', `${token}`);
     xhr.onload = function() {
         if (xhr.status != 200) {
             alert(xhr.status + ': ' + xhr.statusText); 

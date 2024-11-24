@@ -99,7 +99,7 @@ function loadBalanceRoulette()
 
     xhr.open('GET', url, true);
     var token = sessionStorage.getItem('token');
-    xhr.setRequestHeader('Authorization', `Bearer ${token}`)
+    xhr.setRequestHeader('Authorization', ` ${token}`)
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
       if (xhr.status !== 200) {
@@ -129,7 +129,7 @@ function updateBalance(amount) {
 
     xhr.open('PUT', url, true);
     var token = sessionStorage.getItem('token');
-    xhr.setRequestHeader('Authorization', `Bearer ${token}`)
+    xhr.setRequestHeader('Authorization', ` ${token}`)
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
       if (xhr.status !== 200)
@@ -326,7 +326,7 @@ function storeActivity(amount, nameGame) {
 
     xhr.open('POST', url, true);
     const token = sessionStorage.getItem('token');
-    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+    xhr.setRequestHeader('Authorization', ` ${token}`);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.onload = function () {

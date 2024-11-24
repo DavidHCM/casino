@@ -23,7 +23,7 @@ function loadBalance() {
 
     xhr.open('GET', url, true);
     var token = sessionStorage.getItem('token');
-    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+    xhr.setRequestHeader('Authorization', ` ${token}`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
         if (xhr.status != 200) {
@@ -67,7 +67,7 @@ function addBalance() {
 
     xhr.open('PUT', `${appURL}/profile/balance`, false);
     var token = sessionStorage.getItem('token');
-    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+    xhr.setRequestHeader('Authorization', ` ${token}`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
         if (xhr.status != 200) {
@@ -123,7 +123,7 @@ function withdrawBalance() {
 
         xhr.open('PUT', `${appURL}/profile/balance`, false);
         var token = sessionStorage.getItem('token');
-        xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+        xhr.setRequestHeader('Authorization', ` ${token}`);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = function() {
             if (xhr.status != 200) {
