@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const { createProxyMiddleware } = require('http-proxy-middleware'); 
-console.log('createProxyMiddleware:', createProxyMiddleware);
+const axios = require('axios');
 
 const morgan = require('morgan'); // Optional: For better logging
 
@@ -11,35 +11,33 @@ const PORT = 5000;
 // BACKEND
 const BACKEND_URL = 'http://10.0.140.169:3000';
 
-// Middleware to log all incoming requests
-app.use(morgan('combined')); // Optional: Use morgan for detailed logs
-app.use((req, res, next) => {
-    console.log(`Frontend received request: ${req.method} ${req.url}`);
-    next();
-});
+// app.use(morgan('combined')); // Optional: Use morgan for detailed logs
+// app.use((req, res, next) => {
+//     console.log(`Frontend received request: ${req.method} ${req.url}`);
+//     next();
+// });
 
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// **Move Proxy Middleware Before Static Middleware**
-app.use('/api', createProxyMiddleware({
-    target: BACKEND_URL,
-    changeOrigin: true,
-    pathRewrite: {
-        '^/api': '', // Remove '/api' prefix
-    },
-    logLevel: 'debug', // Enable detailed logging
-    onProxyReq: (proxyReq, req, res) => {
-        console.log(`Proxying request to: ${BACKEND_URL}${req.url}`);
-    },
-    onProxyRes: (proxyRes, req, res) => {
-        console.log(`Received response from backend: ${proxyRes.statusCode}`);
-    },
-    onError: (err, req, res) => {
-        console.error('Proxy error:', err);
-        res.status(500).send('Proxy encountered an error.');
-    },
-}));
+// app.use('/api', createProxyMiddleware({
+//     target: BACKEND_URL,
+//     changeOrigin: true,
+//     pathRewrite: {
+//         '^/api': '', // Remove '/api' prefix
+//     },
+//     logLevel: 'debug', // Enable detailed logging
+//     onProxyReq: (proxyReq, req, res) => {
+//         console.log(`Proxying request to: ${BACKEND_URL}${req.url}`);
+//     },
+//     onProxyRes: (proxyRes, req, res) => {
+//         console.log(`Received response from backend: ${proxyRes.statusCode}`);
+//     },
+//     onError: (err, req, res) => {
+//         console.error('Proxy error:', err);
+//         res.status(500).send('Proxy encountered an error.');
+//     },
+// }));
 
 // STATIC Files Frontend - After Proxy Middleware
 app.use(express.static(path.join(__dirname, 'public')));
@@ -79,11 +77,27 @@ app.get('/mines', (req, res) => {
     res.sendFile(path.join(viewsPath, 'mineBet.html'));
 });
 
+// Any other route
 app.post('/api/register', (req, res) => {
     console.log("HERE");
     res.send('hello world');
 });
 
+app.post('/api/register', async (req, res) => {
+    try {
+        console.log(`Manually proxying request to: ${BACKEND_URL}/register`);
+        const response = await axios.post(`${BACKEND_URL}/register`, req.body, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        console.log(`Received response from backend: ${response.status}`);
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        console.error('Manual Proxy error:', error.message);
+        res.status(500).send('Manual Proxy encountered an error.');
+    }
+});
 
 // Catch-all route
 app.get('*', (req, res) => {
