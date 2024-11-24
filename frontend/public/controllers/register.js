@@ -134,6 +134,7 @@ actionRegister.addEventListener('click', async () => {
 
 
         const requestBody = JSON.stringify(userData);
+        console.log("Frontend", requestBody, appURL);
 
         const response = await fetch(`${appURL}/register`, {
             method: 'POST',
