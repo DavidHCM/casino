@@ -215,7 +215,7 @@ app.put('/api/profile/balance', async (req, res) => {
 });
 
 // 7. Get Activity Route
-app.get('/api/activity', async (req, res) => {
+app.get('/api/profile/activity', async (req, res) => {
     try {
         const authHeader = req.headers['authorization'];
         const token = authHeader;
@@ -235,7 +235,7 @@ app.get('/api/activity', async (req, res) => {
 });
 
 // 8. Post Activity Route
-app.post('/api/activity', async (req, res) => {
+app.post('/api/profile/activity', async (req, res) => {
     try {
         const authHeader = req.headers['authorization'];
         const token = authHeader;
