@@ -227,7 +227,6 @@ app.get('/api/profile/activity', async (req, res) => {
             params: req.query, // Forward any query parameters
         });
         // Backend sends a list of activities
-        console.log("HERE");
         res.status(response.status).json(response.data);
     } catch (error) {
         console.error('Error in GET /api/activity:', error.response ? error.response.data : error.message);
@@ -240,7 +239,7 @@ app.post('/api/profile/activity', async (req, res) => {
     try {
         const authHeader = req.headers['authorization'];
         const token = authHeader;
-        const response = await axios.post(`${BACKEND_URL}/activity`, req.body, {
+        const response = await axios.post(`${BACKEND_URL}/api/activity`, req.body, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token, // Assuming activity creation requires auth
