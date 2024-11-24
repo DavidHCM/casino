@@ -161,6 +161,8 @@ app.get('/api/profile/', async (req, res) => {
                 'Content-Type': 'application/json',
                 'Authorization': token,
             },
+            params: req.query, // Forward query parameters
+
         });
         // Backend sends updated user object
         res.status(response.status).json(response.data);
