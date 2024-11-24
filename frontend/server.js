@@ -19,11 +19,7 @@ app.use((req, res, next) => {
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// STATIC Files Frontend
-app.use(express.static(path.join(__dirname, 'public')));
-const viewsPath = path.join(__dirname, 'public/views');
-
-// Proxy configuration
+// **Move Proxy Middleware Before Static Middleware**
 app.use('/api', createProxyMiddleware({
     target: BACKEND_URL,
     changeOrigin: true,
@@ -34,11 +30,18 @@ app.use('/api', createProxyMiddleware({
     onProxyReq: (proxyReq, req, res) => {
         console.log(`Proxying request to: ${BACKEND_URL}${req.url}`);
     },
+    onProxyRes: (proxyRes, req, res) => {
+        console.log(`Received response from backend: ${proxyRes.statusCode}`);
+    },
     onError: (err, req, res) => {
         console.error('Proxy error:', err);
         res.status(500).send('Proxy encountered an error.');
     },
 }));
+
+// STATIC Files Frontend - After Proxy Middleware
+app.use(express.static(path.join(__dirname, 'public')));
+const viewsPath = path.join(__dirname, 'public/views');
 
 // --------- Directions --------------------
 
