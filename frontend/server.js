@@ -78,11 +78,6 @@ app.get('/mines', (req, res) => {
 });
 
 // Any other route
-app.post('/api/register', (req, res) => {
-    console.log("HERE");
-    res.send('hello world');
-});
-
 app.post('/api/register', async (req, res) => {
     try {
         console.log(`Manually proxying request to: ${BACKEND_URL}/register`);
