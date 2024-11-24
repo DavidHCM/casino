@@ -80,19 +80,124 @@ app.get('/mines', (req, res) => {
 // Any other route
 app.post('/api/register', async (req, res) => {
     try {
-        console.log(`Manually proxying request to: ${BACKEND_URL}/register`);
         const response = await axios.post(`${BACKEND_URL}/register`, req.body, {
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-        console.log(`Received response from backend: ${response.status}`);
         res.status(response.status).send(response.data);
     } catch (error) {
-        console.error('Manual Proxy error:', error.message);
         res.status(500).send('Manual Proxy encountered an error.');
     }
 });
+
+app.post('/api/login', async (req, res) => {
+    try {
+        const response = await axios.post(`${BACKEND_URL}/login`, req.body, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        res.status(500).send('Manual Proxy encountered an error.');
+    }
+});
+
+
+app.get('/api/getUserName', async (req, res) => {
+    try {
+        const response = await axios.get(`${BACKEND_URL}/getUserName`, req.body, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        res.status(500).send('Manual Proxy encountered an error.');
+    }
+});
+
+app.post('/api/login', async (req, res) => {
+    try {
+        const response = await axios.post(`${BACKEND_URL}/login`, req.body, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        res.status(500).send('Manual Proxy encountered an error.');
+    }
+});
+
+app.put('/api/profile/', async (req, res) => {
+    try {
+        const response = await axios.put(`${BACKEND_URL}/profile`, req.body, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        res.status(500).send('Manual Proxy encountered an error.');
+    }
+});
+
+app.get('/api/profile/balance', async (req, res) => {
+    try {
+        const response = await axios.post(`${BACKEND_URL}/profile/balance`, req.body, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        res.status(500).send('Manual Proxy encountered an error.');
+    }
+});
+
+app.put('/api/profile/balance', async (req, res) => {
+    try {
+        const response = await axios.put(`${BACKEND_URL}/profile/balance`, req.body, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        res.status(500).send('Manual Proxy encountered an error.');
+    }
+});
+
+app.get('/api/activity', async (req, res) => {
+    try {
+        const response = await axios.get(`${BACKEND_URL}/activity`, req.body, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        res.status(500).send('Manual Proxy encountered an error.');
+    }
+});
+
+app.post('/api/activity', async (req, res) => {
+    try {
+        const response = await axios.post(`${BACKEND_URL}/activity`, req.body, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        res.status(response.status).send(response.data);
+    } catch (error) {
+        res.status(500).send('Manual Proxy encountered an error.');
+    }
+});
+
+
+
 
 // Catch-all route
 app.get('*', (req, res) => {
