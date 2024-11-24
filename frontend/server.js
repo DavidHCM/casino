@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const { createProxyMiddleware } = require('http-proxy-middleware'); 
 console.log('createProxyMiddleware:', createProxyMiddleware);
+
 const morgan = require('morgan'); // Optional: For better logging
 
 const app = express();
