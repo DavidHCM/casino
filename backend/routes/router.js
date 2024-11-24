@@ -65,6 +65,8 @@ router.get('/getUserName', verifyToken, async (req, res) => {
 router.post('/register',async (req,res,next) => {
     try {
         const {name, age, email, password} = req.body;
+        console.log("Hola", req.body);
+
 
         const existingVerification = await User.findOne({email})
         if (existingVerification) {
