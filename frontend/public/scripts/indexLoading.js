@@ -25,7 +25,7 @@ function loadName()
         console.error('No token found in session storage');
         return;
     }
-        fetch(`${appURL}/api/getUserName`, {
+        fetch(`http://34.202.136.132:5000/api/getUserName`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
