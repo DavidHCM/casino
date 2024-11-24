@@ -227,6 +227,7 @@ app.get('/api/profile/activity', async (req, res) => {
             params: req.query, // Forward any query parameters
         });
         // Backend sends a list of activities
+        console.log("HERE");
         res.status(response.status).json(response.data);
     } catch (error) {
         console.error('Error in GET /api/activity:', error.response ? error.response.data : error.message);
