@@ -114,7 +114,8 @@ app.post('/api/login', async (req, res) => {
 // 3. Get User Name Route
 app.get('/api/getUserName', async (req, res) => {
     try {
-        const token = getAuthHeader(req);
+        const authHeader = req.headers['authorization'];
+        const token = authHeader;
         const response = await axios.get(`${BACKEND_URL}/getUserName`, {
             headers: {
                 'Content-Type': 'application/json',
