@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function loadProfile() {
     var id = sessionStorage.getItem('token');
-    var url = `${appURL}/api/profile?id=${id}`;
+    var url = `${appURL}/profile?id=${id}`;
 
     xhr.open('GET', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
