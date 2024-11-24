@@ -21,7 +21,7 @@ function loadActivity() {
 
     xhr.open('GET', url, true);
     var token = sessionStorage.getItem('token');
-    xhr.setRequestHeader('Authorization', `Bearer ${token}`)
+    xhr.setRequestHeader('Authorization', `${token}`)
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
         if (xhr.status != 200) {
