@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function loadProfile() {
     var id = sessionStorage.getItem('token');
-    var url = `${appURL}/profile?id=${id}`;
+    var url = `${appURL}/api/profile?id=${id}`;
 
     xhr.open('GET', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -76,7 +76,7 @@ function updateField(field, newValue) {
     }
     data = JSON.stringify(data);
 
-    xhr.open('PUT', `/profile`, false);
+    xhr.open('PUT', `/api/profile`, false);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
         if (xhr.status != 200) {
