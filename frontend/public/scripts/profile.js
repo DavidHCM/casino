@@ -77,6 +77,8 @@ function updateField(field, newValue) {
     data = JSON.stringify(data);
 
     xhr.open('PUT', `/api/profile`, false);
+    console.log("Token in frontend", token);
+    xhr.setRequestHeader('Authorization', `${token}`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
         if (xhr.status != 200) {
