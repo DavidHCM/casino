@@ -43,6 +43,8 @@ router.get('/getUserName', verifyToken, async (req, res) => {
         const authHeader = req.headers['authorization'];
         const token = authHeader;
 
+        console.log("\n", authHeader, token, req);
+
         req.userId = token;
 
         const user = await User.findById(req.userId);
