@@ -382,7 +382,7 @@ function updateBalance(amount) {
 
 function storeActivity(balance, nameGame) {
   const id = sessionStorage.getItem('token');
-  const url = `${appURL}/api/profile/activity`;
+  const url = `${appURL}/profile/activity`;
   console.log(url);
 
   var BetStatus = false;
