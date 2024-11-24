@@ -8,6 +8,12 @@ const morgan = require('morgan'); // Optional: For better logging
 const app = express();
 const PORT = 5000;
 
+app.use(cors({
+    origin: 'http://34.202.136.132:3000',
+    methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']
+}));
+
+
 // BACKEND
 const BACKEND_URL = 'http://10.0.140.169:3000';
 
